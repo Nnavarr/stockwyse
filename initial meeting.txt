@@ -1,0 +1,25 @@
+Baking / Cooking
+Dog Rescue
+
+Finance
+Coffee (local shops / small business)
+Gaming 
+
+Coffee Baking / Cooking
+Gaming
+
+
+Mom & Pop 
+Coffee / Baking / Cooking
+
+
+1. Find Small businesses
+	- Most visited
+	- Highly rated
+		- API: Yelp
+	- Reviews
+2. GPS 
+	- Nearest
+	
+
+	API: Airtel IP
