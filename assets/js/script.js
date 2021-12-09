@@ -16,21 +16,28 @@
 //     })
 // })
 
-
 // wallstreetbets API
-var wallstreetBetsUrl = 'https://tradestie.com/api/v1/apps/reddit';
+// var wallstreetBetsUrl = 'https://tradestie.com/api/v1/apps/reddit';
 
-fetch(wallstreetBetsUrl, {
-	'mode': 'no-cors',
-	"method": "GET",
-	headers: {
-		'Content-Type': 'application/json'
-	}
-	}).then(function(response) {
+// fetch(wallstreetBetsUrl, {
+// 	'mode': 'no-cors',
+// 	"method": 'GET',
+// 	'headers': {
+// 		'Content-Type': 'application/json'
+// 	}
+// 	}).then(function(response) {
+// 		response.json().then(function(data) {
+// 		console.log(data);
+// 	})
+// })
+
+
+// stock sentiment
+var apiKey2 = '16814cf0-38f5-49e1-b3f6-9189f51bc2ef';
+var apiURL = 'https://www.styvio.com/apiV2/sentiment/AAPL/';
+
+fetch(apiURL + apiKey2).then(function(response){
 	console.log(response);
-
-	// response.json().then(function(test) {
-	// 	console.log(test);
-	// })
+	console.log(apiURL + apiKey2);
 
 })
