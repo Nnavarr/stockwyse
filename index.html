@@ -4,41 +4,49 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="./assets/css/style.css" />
+    <title>Stockwyse</title>
+    <link rel="stylesheet" href="./assets/css/style.css"/>
 </head>
 <header>STOCKWYSE</header>
 <body>
     <header>
         <h1>STOCKWYSE</h1>
     </header>
+    <!-- top 5 -->
     <div class="Top5" id="Top">
         <h2>Todays Top 5</h2>
     </div>
-    <div class="co-name">
-        <h4>
-            Search Company:
-        </h4>
-    </div>
-    <div>
-    <button class="months" id="6mo">Last 6 months</button>
-    <button class="days" id="1mo">Last 30 days</button>
-    <button class="days" id="5d">Last 5 days</button>
-    </div>
-    <section class="graph">
+
+    <!-- company selection -->
+    <section class="co-name">
+        <h4>Search Company</h4>
+        <label for="company name">Enter Company name:</label>
+        <input type="text" placeholder="Company Name" name="name" id="name" class="form-input">
     </section>
-    <div class="container">
-    <div class="Stats">
+
+    <!-- time selection -->
+    <div>
+      <button class="months" id="6mo">Last 6 months</button>
+      <button class="days" id="1mo">Last 30 days</button>
+      <button class="days" id="5d">Last 5 days</button>
+    </div>
+
+    <!-- stats -->
+    <section class="Stats">
         <h4>
             Stats:
         </h4>
-    </div>
+    </section>
+
+    <!-- Graph -->
+    <section class="graph">
+    </section>
 </body>
-<script src="./assets/js/script.js"></script>
 <footer>
     <div>
         <a href="#">All Rights Reserved</a><br />
         &copy; Stockwyse trading group CBS 2021.
-      </div>
+    </div>
 </footer>
+    <script src="./assets/js/script.js"></script> 
 </html>
