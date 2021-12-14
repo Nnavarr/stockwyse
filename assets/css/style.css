@@ -23,3 +23,9 @@ body{
     padding: 10px;
     border: 1px solid #0000;
 }
+
+#search-btn{
+    min-width: 100px;
+    min-height: 20px;
+    margin-left: 10px;
+}
