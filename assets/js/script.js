@@ -8,9 +8,19 @@ fetch(yahooChartUrl, {
 		"x-api-key": apiKey
 	}
 })
-.then(response => {
+.then(function(response) {
 	console.log(response);
     response.json().then(function(data) {
         console.log(data);
     })
 })
+
+
+// stock data api test
+var stockDataUrl = 'https://api.stockdata.org/v1/news/all?symbols=AMD&filter_entities=true&language=en&api_token=0xO52bbSZgqSf4Ebeg7bZCxTxh023bFgZhxuOYwJ';
+fetch(stockDataUrl).then(function(response){
+	response.json().then(function(data) {
+		console.log(data)
+	})
+})
+
