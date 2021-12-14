@@ -1,15 +1,18 @@
+// api variables
 var apiKey = 'OeK23R7rjQ4edxtzHNhH44rjXhs0dZJE1kxtmnfG';
 
 // stock symbol element
 var tickerEl = document.getElementById('name');
 var searchBtnEl = document.getElementById('search-btn');
 
+// global variables
+var symbol = '';
+
 // function for extracting and plotting stock symbol
 var plotPrice = function(){
-	var symbol = tickerEl.value;
-	console.log(symbol);
+	symbol = tickerEl.value;
 
-	// create url based on stock ticker passed
+	// create url based on stock ticker passed (yahoo finance)
 	var yahooChartUrl = `https://yfapi.net/v8/finance/spark?interval=1d&range=12mo&symbols=${symbol}`; 
 	
 	// fetch process for yahoo finance api 
@@ -22,7 +25,7 @@ var plotPrice = function(){
 	.then(function(response) {
 		response.json().then(function(data) {
 
-			// console.log(data);
+			// create array to contain timestamp/close pairs
 			var closingPrice = data[symbol].close;
 			var timestamps = data[symbol].timestamp;
 			var dataArray = [];
@@ -39,7 +42,7 @@ var plotPrice = function(){
 					selected: 1
 				},
 				title: {
-					text: `${symbol} Stock Price`
+					text: `${symbol} Price`
 				},
 				series: [{
 					name: `${symbol}`,
@@ -50,48 +53,26 @@ var plotPrice = function(){
 				}]
 			})
 		})
+
+		// call stock sentiment API function
+		stockSentiment(symbol);
 	})
 }
 
-// Highcharts.getJSON('https://demo-live-data.highcharts.com/aapl-c.json', function (data) {
-// 	// console.log(data);
-
-// // Create the chart
-//     Highcharts.stockChart('container', {
-//         rangeSelector: {
-//             selected: 1
-//         },
-
-//         title: {
-//             text: 'AAPL Stock Price'
-//         },
-
-//         series: [{
-//             name: 'AAPL',
-//             data: data,
-//             tooltip: {
-//                 valueDecimals: 2
-//             }
-//         }]
-//     });
-// });
-
-
-// // stock data api test
-// var stockDataUrl = 'https://api.stockdata.org/v1/news/all?symbols=AMD&filter_entities=true&language=en&api_token=0xO52bbSZgqSf4Ebeg7bZCxTxh023bFgZhxuOYwJ';
-// fetch(stockDataUrl).then(function(response){
-// 	response.json().then(function(data) {
-// 		console.log(data)
-// 	})
-// })
-
-// // line chart of stock data
-// chartEl = document.getElementById('line-chart').getContext('2d');
-// var lineChart = new Chart(chartEl, {
-// 	type: 'line',
-// 	data: ;
-
-// })
+// function for extracting stock sentiment from stockdata API
+var stockSentiment = function(symbol){
+	// stock data api test
+	var stockDataUrl = `https://api.stockdata.org/v1/news/all?symbols=${symbol}&filter_entities=true&language=en&api_token=0xO52bbSZgqSf4Ebeg7bZCxTxh023bFgZhxuOYwJ`;
+	
+	fetch(stockDataUrl).then(function(response){
+		response.json().then(function(data) {
+			console.log(data)
+			
+			// extract article highlights
+			var sentimentScore = data.data[0].entities[0].sentiment_score;
+		})
+	})
+}
 
 // event listeners
-searchBtnEl.addEventListener('click', plotPrice);
+searchBtnEl.addEventListener('click', plotPrice, stockSentiment);
