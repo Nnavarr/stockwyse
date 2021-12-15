@@ -4,7 +4,7 @@ var apiKey = 'OeK23R7rjQ4edxtzHNhH44rjXhs0dZJE1kxtmnfG';
 // HTML elements
 var tickerEl = document.getElementById('name');
 var searchBtnEl = document.getElementById('search-btn');
-var statsEl = document.getElementById('news');
+var newsEl = document.getElementById('news');
 
 // global variables
 var symbol = '';
@@ -69,6 +69,11 @@ var stockSentiment = function(symbol){
 		response.json().then(function(data) {
 			console.log(data)
 			
+			// clear any existing child elements
+			while (newsEl.firstChild){
+				newsEl.removeChild(newsEl.firstChild);
+			}
+
 			// extract articles
 			var article1Title = data.data[0].title;
 			var article1Url = data.data[0].url;
@@ -89,10 +94,8 @@ var stockSentiment = function(symbol){
 			article2.innerHTML = `<h4 class='is-flex'>${article2Title}</h4><a href=${article2Url} target='_blank'><img src=${article2Img} class='article-img is-vcentered'>`;
 			article2.className = 'column is-centered is-6 is-flex-direction-column';
 
-			console.log()
-
-			statsEl.appendChild(article1);
-			statsEl.appendChild(article2);
+			newsEl.appendChild(article1);
+			newsEl.appendChild(article2);
 
 			// extract sentiment
 			var sentimentScore = data.data[0].entities[0].sentiment_score;
