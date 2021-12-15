@@ -5,6 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stockwyse</title>
+    <script src="https://code.highcharts.com/stock/highstock.js"></script>
+    <script src="https://code.highcharts.com/stock/modules/data.js"></script>
+    <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/stock/modules/export-data.js"></script>
     <link rel="stylesheet" href="./assets/css/style.css"/>
 </head>
 <header>STOCKWYSE</header>
@@ -20,15 +24,13 @@
     <!-- company selection -->
     <section class="co-name">
         <h4>Search Company</h4>
-        <label for="company name">Enter Company name:</label>
-        <input type="text" placeholder="Company Name" name="name" id="name" class="form-input">
+        <label for="company name">Enter Company Ticker:</label>
+        <input type="text" placeholder="Ticker Symbol" name="name" id="name" class="form-input">
     </section>
 
-    <!-- time selection -->
+    <!-- search button -->
     <div>
-      <button class="months" id="6mo">Last 6 months</button>
-      <button class="days" id="1mo">Last 30 days</button>
-      <button class="days" id="5d">Last 5 days</button>
+        <button class='months' id='search-btn'>Search</button>
     </div>
 
     <!-- stats -->
@@ -40,6 +42,7 @@
 
     <!-- Graph -->
     <section class="graph">
+        <div id="container" style="height: 400px; min-width: 310px"></div>
     </section>
 </body>
 <footer>
