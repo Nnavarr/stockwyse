@@ -1,5 +1,27 @@
+header {
+    text-align:center;
+}
+
 body{
     margin: 0;
+}
+
+a img {
+    max-height: 300px;
+    max-width: 200px;
+    justify-content: center;
+    object-fit: cover;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 2.5rem;
+}
+
+#name {
+    text-align: center;
 }
 
 .container {
@@ -24,8 +46,30 @@ body{
     border: 1px solid #0000;
 }
 
+.graph {
+    margin: 0px 15px;
+
+}
+
+#news {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+
 #search-btn{
     min-width: 100px;
     min-height: 20px;
     margin-left: 10px;
+    margin-top: 15px;
+    
 }
+
+.co-name{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+

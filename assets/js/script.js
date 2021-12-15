@@ -1,9 +1,10 @@
 // api variables
 var apiKey = 'OeK23R7rjQ4edxtzHNhH44rjXhs0dZJE1kxtmnfG';
 
-// stock symbol element
+// HTML elements
 var tickerEl = document.getElementById('name');
 var searchBtnEl = document.getElementById('search-btn');
+var statsEl = document.getElementById('news');
 
 // global variables
 var symbol = '';
@@ -68,7 +69,32 @@ var stockSentiment = function(symbol){
 		response.json().then(function(data) {
 			console.log(data)
 			
-			// extract article highlights
+			// extract articles
+			var article1Title = data.data[0].title;
+			var article1Url = data.data[0].url;
+			var article1Img = data.data[0].image_url;
+			var article1Sentiment = data.data[0].entities[0].sentiment_score;
+
+			var article2Title = data.data[1].title;
+			var article2Url = data.data[1].url;
+			var article2Img = data.data[1].image_url;
+			var article2Sentiment = data.data[1].entities[0].sentiment_score;
+
+			// create and append HTML elements
+			var article1 = document.createElement('div');
+			article1.innerHTML = `<h4 class='is-centered'>${article1Title}</h4><a href=${article1Url} target='_blank'><img src=${article1Img} class='article-img is-centered'>`;
+			article1.className = 'column is-6 is-flex-direction-column is-align-content-center';
+
+			var article2 = document.createElement('div');
+			article2.innerHTML = `<h4 class='is-flex'>${article2Title}</h4><a href=${article2Url} target='_blank'><img src=${article2Img} class='article-img is-vcentered'>`;
+			article2.className = 'column is-centered is-6 is-flex-direction-column';
+
+			console.log()
+
+			statsEl.appendChild(article1);
+			statsEl.appendChild(article2);
+
+			// extract sentiment
 			var sentimentScore = data.data[0].entities[0].sentiment_score;
 		})
 	})

@@ -9,35 +9,29 @@
     <script src="https://code.highcharts.com/stock/modules/data.js"></script>
     <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
     <script src="https://code.highcharts.com/stock/modules/export-data.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     <link rel="stylesheet" href="./assets/css/style.css"/>
 </head>
-<header>STOCKWYSE</header>
+
 <body>
-    <header>
-        <h1>STOCKWYSE</h1>
+    <header class='hero is-primary'>
+        <h1 class='title'>STOCKWYSE</h1>
     </header>
     <!-- top 5 -->
-    <div class="Top5" id="Top">
+    <!-- <div class="Top5" id="Top">
         <h2>Todays Top 5</h2>
-    </div>
+    </div> -->
 
     <!-- company selection -->
-    <section class="co-name">
-        <h4>Search Company</h4>
+    <section class="co-name columns">
+        <h4 class='column '>Be Wyse.</h4>
         <label for="company name">Enter Company Ticker:</label>
-        <input type="text" placeholder="Ticker Symbol" name="name" id="name" class="form-input">
+        <input type="text" placeholder="Ticker Symbol" name="name" id="name" class="input is-primary is-2 column is-small">
+        <button class='button is-primary' id='search-btn'>Search</button>
     </section>
 
-    <!-- search button -->
-    <div>
-        <button class='months' id='search-btn'>Search</button>
-    </div>
-
     <!-- stats -->
-    <section class="Stats">
-        <h4>
-            Stats:
-        </h4>
+    <section class="Stats columns" id='news'>
     </section>
 
     <!-- Graph -->
@@ -45,8 +39,8 @@
         <div id="container" style="height: 400px; min-width: 310px"></div>
     </section>
 </body>
-<footer>
-    <div>
+<footer class='footer'>
+    <div class='content has-text-centered'>
         <a href="#">All Rights Reserved</a><br />
         &copy; Stockwyse trading group CBS 2021.
     </div>
