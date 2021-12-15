@@ -3,14 +3,14 @@ header {
 }
 
 body{
-    margin: 0;
+    margin: 0px 10px;
 }
 
 a img {
     max-height: 300px;
     max-width: 200px;
     justify-content: center;
-    object-fit: cover;
+    object-fit: contain;
 }
 
 footer {
@@ -22,6 +22,7 @@ footer {
 
 #name {
     text-align: center;
+    text-transform: uppercase;
 }
 
 .container {
