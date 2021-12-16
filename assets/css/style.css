@@ -3,10 +3,6 @@
     flex: auto;
 }
 
-.hero-body {
-    background-image: url("../stock.jfif");
-}
-
 .container {
     width: 10vw;
     height: 10vh;
