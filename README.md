@@ -6,8 +6,8 @@
 A stock app that pulls stock information by ticker symbol and provides the r/wallstreetbets sentiment.
 
 ### APIs
-Sentiment:
-  https://tradestie.com/apps/reddit/api/
+Stockdata.org API:
+  https://www.stockdata.org/
   
 Yahoo Finance:
   https://www.yahoofinanceapi.com/

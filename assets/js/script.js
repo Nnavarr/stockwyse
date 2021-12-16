@@ -97,8 +97,6 @@ var stockSentiment = function(symbol){
 			newsEl.appendChild(article1);
 			newsEl.appendChild(article2);
 
-			// extract sentiment
-			var sentimentScore = data.data[0].entities[0].sentiment_score;
 		})
 	})
 }
