@@ -1,31 +1,54 @@
+header {
+    text-align:center;
+}
+
 body{
-    margin: 0;
+    margin: 0px 10px;
 }
 
-.container {
-    width: 100vw;
-    height: 100vh;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: bold;
-    font-size: 20px;
-
-    display: grid;
-
-    grid-template-columns: repeat (3, 1fr);
-    grid-template-rows: 50px 1fr 1fr 100px;
-
-    gap: 10px;
-    padding: 10px;
-    box-sizing: border-box;
+a img {
+    max-height: 300px;
+    max-width: 200px;
+    justify-content: center;
+    object-fit: contain;
 }
 
-.container div{
-    padding: 10px;
-    border: 1px solid #0000;
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 2.5rem;
 }
+
+#name {
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.graph {
+    margin: 0px 15px;
+
+}
+
+#news {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
 
 #search-btn{
     min-width: 100px;
     min-height: 20px;
     margin-left: 10px;
+    margin-top: 15px;
+    
 }
+
+.co-name{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
