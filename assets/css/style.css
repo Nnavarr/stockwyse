@@ -27,14 +27,10 @@ footer {
 
 .graph {
     margin: 0px 15px;
-
 }
 
-#news {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
+#left-article {
+    margin-left: 200px;
 }
 
 

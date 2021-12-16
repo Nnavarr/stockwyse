@@ -87,12 +87,13 @@ var stockSentiment = function(symbol){
 
 			// create and append HTML elements
 			var article1 = document.createElement('div');
-			article1.innerHTML = `<h4 class='is-centered'>${article1Title}</h4><a href=${article1Url} target='_blank'><img src=${article1Img} class='article-img is-centered'><h5>${article1Sentiment}</h5>`;
-			article1.className = 'column is-6 is-flex-direction-column is-align-content-center';
+			article1.innerHTML = `<h3 class='is-half'>Sentiment: ${article1Sentiment}</h3><h4 class='is-centered'>${article1Title}</h4><a href=${article1Url} target='_blank'><img src=${article1Img} class='article-img is-centered'>`;
+			article1.className = 'column is-3 is-flex-direction-column is-align-content-right is-align-items-center';
+			article1.id = 'left-article';
 
 			var article2 = document.createElement('div');
-			article2.innerHTML = `<h4 class='is-flex'>${article2Title}</h4><a href=${article2Url} target='_blank'><img src=${article2Img} class='article-img is-vcentered'><h5>${article2Sentiment}</h5>`;
-			article2.className = 'column is-centered is-6 is-flex-direction-column';
+			article2.innerHTML = `<h3 class='is-align-items-center'>Sentiment: ${article2Sentiment}</h5><h4 class='is-flex'>${article2Title}</h4><a href=${article2Url} target='_blank'><img src=${article2Img} class='article-img is-vcentered'>`;
+			article2.className = 'column is-3 is-flex-direction-column is-align-content-center is-align-items-center';
 
 			newsEl.appendChild(article1);
 			newsEl.appendChild(article2);
