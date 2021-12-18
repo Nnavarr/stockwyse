@@ -1,3 +1,15 @@
+* {
+    margin: 0;
+    flex: auto;
+}
+
+.container {
+    width: 10vw;
+    height: 10vh;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+
 header {
     text-align:center;
 }
