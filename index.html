@@ -18,42 +18,31 @@
         </div>
     </section>
 </hero>
+
 <body>
-    <header>
-        <h1>STOCKWYSE</h1>
+    <header class='hero is-primary'>
+        <h1 class='title'>STOCKWYSE</h1>
     </header>
 
-    <!-- top 5 -->
-    <div class="Top5" id="Top">
-        <h2>Todays Top 5</h2>
-    </div>
-
     <!-- company selection -->
-    <section class="co-name">
-        <h4>Search Company</h4>
+    <section class="co-name columns">
+        <h4 class='column '></h4>
         <label for="company name">Enter Company Ticker:</label>
-        <input type="text" placeholder="Ticker Symbol" name="name" id="name" class="form-input">
+        <input type="text" placeholder="Ticker Symbol" name="name" id="name" class="input is-primary is-2 column is-small">
+        <button class='button is-primary is-small' id='search-btn'>Search</button>
     </section>
 
-    <!-- search button -->
-    <div>
-        <button class='months' id='search-btn'>Search</button>
-    </div>
-
-    <!-- stats -->
-    <section class="Stats">
-        <h4>
-            Stats:
-        </h4>
+    <!-- news -->
+    <section class="news columns is-flex-direction-row is flex-wrap-wrap is-justify-content-center" id='news'>
     </section>
 
-    <!-- Graph -->
+    <!-- graph -->
     <section class="graph">
         <div id="container" style="height: 400px; min-width: 310px"></div>
     </section>
 </body>
-<footer>
-    <div>
+<footer class='footer'>
+    <div class='content has-text-centered'>
         <a href="#">All Rights Reserved</a><br />
         &copy; Stockwyse trading group CBS 2021.
     </div>

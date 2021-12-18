@@ -1,9 +1,10 @@
 // api variables
 var apiKey = 'OeK23R7rjQ4edxtzHNhH44rjXhs0dZJE1kxtmnfG';
 
-// stock symbol element
+// HTML elements
 var tickerEl = document.getElementById('name');
 var searchBtnEl = document.getElementById('search-btn');
+var newsEl = document.getElementById('news');
 
 // global variables
 var symbol = '';
@@ -68,8 +69,35 @@ var stockSentiment = function(symbol){
 		response.json().then(function(data) {
 			console.log(data)
 			
-			// extract article highlights
-			var sentimentScore = data.data[0].entities[0].sentiment_score;
+			// clear any existing child elements
+			while (newsEl.firstChild){
+				newsEl.removeChild(newsEl.firstChild);
+			}
+
+			// extract articles
+			var article1Title = data.data[0].title;
+			var article1Url = data.data[0].url;
+			var article1Img = data.data[0].image_url;
+			var article1Sentiment = data.data[0].entities[0].sentiment_score;
+
+			var article2Title = data.data[1].title;
+			var article2Url = data.data[1].url;
+			var article2Img = data.data[1].image_url;
+			var article2Sentiment = data.data[1].entities[0].sentiment_score;
+
+			// create and append HTML elements
+			var article1 = document.createElement('div');
+			article1.innerHTML = `<h3 class='is-half'>Sentiment: ${article1Sentiment}</h3><h4 class='is-centered'>${article1Title}</h4><a href=${article1Url} target='_blank'><img src=${article1Img} class='article-img is-centered'>`;
+			article1.className = 'column is-3 is-flex-direction-column is-align-content-right is-align-items-center';
+			article1.id = 'left-article';
+
+			var article2 = document.createElement('div');
+			article2.innerHTML = `<h3 class='is-align-items-center'>Sentiment: ${article2Sentiment}</h5><h4 class='is-flex'>${article2Title}</h4><a href=${article2Url} target='_blank'><img src=${article2Img} class='article-img is-vcentered'>`;
+			article2.className = 'column is-3 is-flex-direction-column is-align-content-center is-align-items-center';
+
+			newsEl.appendChild(article1);
+			newsEl.appendChild(article2);
+
 		})
 	})
 }
