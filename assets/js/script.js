@@ -57,6 +57,10 @@ var plotPrice = function(){
 
 		// call stock sentiment API function
 		stockSentiment(symbol);
+
+		// update search history
+		loadHistory();
+		saveHistory();
 	})
 }
 
@@ -67,7 +71,6 @@ var stockSentiment = function(symbol){
 	
 	fetch(stockDataUrl).then(function(response){
 		response.json().then(function(data) {
-			console.log(data)
 			
 			// clear any existing child elements
 			while (newsEl.firstChild){
@@ -100,6 +103,40 @@ var stockSentiment = function(symbol){
 
 		})
 	})
+}
+
+// local storage history functions 
+var loadHistory = function(){
+	// load existing search history
+	var history = JSON.parse(localStorage.getItem('stockHistory'));
+
+	// create object if its not present
+	if (!history){
+		history = [];
+	}
+	return history
+}
+
+// save ticker symbol into search history
+var saveHistory = function(){
+	// load history
+	var history = loadHistory();
+
+	// append entered ticker to history only if it's not already present
+	var ticker = tickerEl.value;
+	if (!history.includes(ticker)){
+		history.push(ticker);
+	}
+
+	// update local storage
+	localStorage.setItem('stockHistory', JSON.stringify(history));
+}
+
+// create historical buttons from the local storage history
+var setHistoricalButtons = funuction() {
+	
+
+
 }
 
 // event listeners
