@@ -19,3 +19,6 @@ SO THAT I can decide whether to buy/sell
 
 ### Pitch
 Do you have the time to see what stocks are hot or to avoid. Our app stockwyse makes it simple to find the stocks that you want in your portfolio
+
+## Screenshot
+![image](https://user-images.githubusercontent.com/92769029/146694153-3c9b18b0-4177-48d0-a35e-924d555bca46.png)
