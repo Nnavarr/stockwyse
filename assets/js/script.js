@@ -5,9 +5,48 @@ var apiKey = 'OeK23R7rjQ4edxtzHNhH44rjXhs0dZJE1kxtmnfG';
 var tickerEl = document.getElementById('name');
 var searchBtnEl = document.getElementById('search-btn');
 var newsEl = document.getElementById('news');
+var historyEl = document.getElementById('stock-history');
 
 // global variables
 var symbol = '';
+
+// create historical buttons from the local storage history
+var setHistoricalButtons = function(){
+	var searchHistory = JSON.parse(localStorage.getItem('stockHistory'));
+
+	// check for presense of history
+	if (searchHistory){
+		for (i in searchHistory){
+			createButton(searchHistory[i]);
+		}
+	}
+}
+
+// new historical button addition
+var newHistButton = function(stockTicker){
+	// pull existing local storage tickers and add new button if its new
+	var searchHistory = JSON.parse(localStorage.getItem('stockHistory'));
+
+	if (searchHistory){
+		// previous search history present and stockTicker is new
+		if (!searchHistory.includes(stockTicker)){
+			createButton(stockTicker);
+		}
+	} else {
+		// first instance of historical search, add the symbol
+		createButton(stockTicker);
+	}
+}
+
+//  function used to create historical buttons
+var createButton = function(textVal) {
+	var historicalSearchBtn = document.createElement('button');
+	historicalSearchBtn.innerText = textVal;
+	historyEl.append(historicalSearchBtn);
+}
+
+// call historical buttons function
+setHistoricalButtons();
 
 // function for extracting and plotting stock symbol
 var plotPrice = function(){
@@ -57,6 +96,9 @@ var plotPrice = function(){
 
 		// call stock sentiment API function
 		stockSentiment(symbol);
+
+		// update historical button
+		newHistButton(symbol);
 
 		// update search history
 		loadHistory();
@@ -130,13 +172,6 @@ var saveHistory = function(){
 
 	// update local storage
 	localStorage.setItem('stockHistory', JSON.stringify(history));
-}
-
-// create historical buttons from the local storage history
-var setHistoricalButtons = funuction() {
-	
-
-
 }
 
 // event listeners
