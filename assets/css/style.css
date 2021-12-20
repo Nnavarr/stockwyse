@@ -43,13 +43,20 @@ footer {
     margin-left: 200px;
 }
 
-
+/* button formatting */
 #search-btn{
     min-width: 100px;
     min-height: 20px;
     margin-left: 10px;
     margin-top: 15px;
     
+}
+
+.history button {
+    min-width: 100px;
+    min-height: 20px;
+    margin-left: 10px;
+    margin-top: 15px;
 }
 
 .co-name{

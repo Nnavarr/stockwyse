@@ -5,9 +5,68 @@ var apiKey = 'OeK23R7rjQ4edxtzHNhH44rjXhs0dZJE1kxtmnfG';
 var tickerEl = document.getElementById('name');
 var searchBtnEl = document.getElementById('search-btn');
 var newsEl = document.getElementById('news');
+var historyEl = document.getElementById('stock-history');
 
 // global variables
 var symbol = '';
+
+// create historical buttons from the local storage history
+var setHistoricalButtons = function(){
+	var searchHistory = JSON.parse(localStorage.getItem('stockHistory'));
+
+	// check for presense of history
+	if (searchHistory){
+		for (i in searchHistory){
+			createButton(searchHistory[i].toUpperCase());
+		}
+	}
+}
+
+// new historical button addition
+var newHistButton = function(stockTicker){
+	// upper case 
+	var stockTicker = stockTicker.toUpperCase();
+
+	// pull existing local storage tickers and add new button if its new
+	var searchHistory = JSON.parse(localStorage.getItem('stockHistory'));
+
+	if (searchHistory){
+		// previous search history present and stockTicker is new
+		if ((!searchHistory.includes(stockTicker)) && (searchHistory.length < 10)){
+			createButton(stockTicker);
+		} else if ((!searchHistory.includes(stockTicker) && searchHistory.length >= 10)) {
+			// shift the history array to retain the top 10
+			searchHistory.shift();
+			console.log(searchHistory);
+			searchHistory.push(stockTicker);
+			console.log(searchHistory);
+			localStorage.setItem('stockHistory', JSON.stringify(searchHistory));
+			createButton(stockTicker);
+			deleteButton();
+		}
+	} else {
+		// first instance of historical search, add the symbol
+		createButton(stockTicker);
+	}
+}
+
+//  function used to create historical buttons
+var createButton = function(textVal) {
+	var historicalSearchBtn = document.createElement('button');
+	historicalSearchBtn.innerText = textVal.toUpperCase();
+
+	// add class for bulma formatting and append to container
+	historicalSearchBtn.className = 'button is-primary is-outlined is-small'
+	historyEl.append(historicalSearchBtn);
+}
+
+var deleteButton = function(){
+	var firstBtn = historyEl.childNodes[0];
+	historyEl.removeChild(firstBtn);
+}
+
+// call historical buttons function
+setHistoricalButtons();
 
 // function for extracting and plotting stock symbol
 var plotPrice = function(){
@@ -57,6 +116,13 @@ var plotPrice = function(){
 
 		// call stock sentiment API function
 		stockSentiment(symbol);
+
+		// update historical button
+		newHistButton(symbol);
+
+		// update search history
+		loadHistory();
+		saveHistory();
 	})
 }
 
@@ -67,7 +133,6 @@ var stockSentiment = function(symbol){
 	
 	fetch(stockDataUrl).then(function(response){
 		response.json().then(function(data) {
-			console.log(data)
 			
 			// clear any existing child elements
 			while (newsEl.firstChild){
@@ -102,5 +167,43 @@ var stockSentiment = function(symbol){
 	})
 }
 
+// local storage history functions 
+var loadHistory = function(){
+	// load existing search history
+	var history = JSON.parse(localStorage.getItem('stockHistory'));
+
+	// create object if its not present
+	if (!history){
+		history = [];
+	}
+	return history
+}
+
+// save ticker symbol into search history
+var saveHistory = function(){
+	// load history
+	var history = loadHistory();
+
+	// append entered ticker to history only if it's not already present
+	var ticker = tickerEl.value.toUpperCase();
+	if (!history.includes(ticker)){
+		history.push(ticker);
+	}
+
+	// update local storage
+	localStorage.setItem('stockHistory', JSON.stringify(history));
+}
+
 // event listeners
 searchBtnEl.addEventListener('click', plotPrice, stockSentiment);
+
+// history button event listener
+historyEl.addEventListener('click', function(event){
+	// extract historical button stock sybmol & update text box to reflect value
+	var clicked = event.target;
+	tickerEl.value = clicked.innerText;
+
+	// pull api
+	plotPrice()
+	stockSentiment()
+})
