@@ -17,20 +17,32 @@ var setHistoricalButtons = function(){
 	// check for presense of history
 	if (searchHistory){
 		for (i in searchHistory){
-			createButton(searchHistory[i]);
+			createButton(searchHistory[i].toUpperCase());
 		}
 	}
 }
 
 // new historical button addition
 var newHistButton = function(stockTicker){
+	// upper case 
+	var stockTicker = stockTicker.toUpperCase();
+
 	// pull existing local storage tickers and add new button if its new
 	var searchHistory = JSON.parse(localStorage.getItem('stockHistory'));
 
 	if (searchHistory){
 		// previous search history present and stockTicker is new
-		if (!searchHistory.includes(stockTicker)){
+		if ((!searchHistory.includes(stockTicker)) && (searchHistory.length < 10)){
 			createButton(stockTicker);
+		} else if ((!searchHistory.includes(stockTicker) && searchHistory.length >= 10)) {
+			// shift the history array to retain the top 10
+			searchHistory.shift();
+			console.log(searchHistory);
+			searchHistory.push(stockTicker);
+			console.log(searchHistory);
+			localStorage.setItem('stockHistory', JSON.stringify(searchHistory));
+			createButton(stockTicker);
+			deleteButton();
 		}
 	} else {
 		// first instance of historical search, add the symbol
@@ -41,8 +53,16 @@ var newHistButton = function(stockTicker){
 //  function used to create historical buttons
 var createButton = function(textVal) {
 	var historicalSearchBtn = document.createElement('button');
-	historicalSearchBtn.innerText = textVal;
+	historicalSearchBtn.innerText = textVal.toUpperCase();
+
+	// add class for bulma formatting and append to container
+	historicalSearchBtn.className = 'button is-primary is-outlined is-small'
 	historyEl.append(historicalSearchBtn);
+}
+
+var deleteButton = function(){
+	var firstBtn = historyEl.childNodes[0];
+	historyEl.removeChild(firstBtn);
 }
 
 // call historical buttons function
@@ -165,7 +185,7 @@ var saveHistory = function(){
 	var history = loadHistory();
 
 	// append entered ticker to history only if it's not already present
-	var ticker = tickerEl.value;
+	var ticker = tickerEl.value.toUpperCase();
 	if (!history.includes(ticker)){
 		history.push(ticker);
 	}
@@ -176,3 +196,14 @@ var saveHistory = function(){
 
 // event listeners
 searchBtnEl.addEventListener('click', plotPrice, stockSentiment);
+
+// history button event listener
+historyEl.addEventListener('click', function(event){
+	// extract historical button stock sybmol & update text box to reflect value
+	var clicked = event.target;
+	tickerEl.value = clicked.innerText;
+
+	// pull api
+	plotPrice()
+	stockSentiment()
+})
